@@ -25,7 +25,7 @@ public class TestController {
     @ApiOperation(value = "测试", notes = "获取路径")
     public ResponseBean test(@PathVariable String s){
         log.info(String.format("测试请求参数：{}."),s);
-        log.debug("hello，我是debug");
+        log.debug("hello，我是debug===");
         List<User> all = userServiceImpl.getAll();
         log.info(String.format("测试请求参数：{}."),all);
         return new ResponseBean(all);
