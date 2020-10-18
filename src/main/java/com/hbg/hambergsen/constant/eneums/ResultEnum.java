@@ -13,8 +13,10 @@ public enum ResultEnum {
     /**
      * 通用状态
      */
+    SUCCESS(200, "成功"),
     ERROR(400, "服务异常"),
-    FAIL(200, "业务异常");
+    NUllPARAM(401, "入参为空"),
+    DATABASEEXCEPTION(402, "数据库异常");
 
     private Integer code;
 

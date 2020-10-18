@@ -1,6 +1,6 @@
 package com.hbg.hambergsen.dao;
 
-import com.hbg.hambergsen.bean.User;
+import com.hbg.hambergsen.bean.Test;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -8,5 +8,8 @@ import java.util.List;
 @Repository
 public interface TestUserMapper  {
 
-    List<User> getAll();
+    List<Test> getAll();
+
+    void saveUser(Test userDto);
+
 }

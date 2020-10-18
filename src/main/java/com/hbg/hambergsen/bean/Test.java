@@ -1,9 +1,11 @@
 package com.hbg.hambergsen.bean;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class User {
+@Builder
+public class Test {
 
     public int id;
 
