@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.hbg.hambergsen.bean.ResponseBean;
 import com.hbg.hambergsen.bean.Test;
 import com.hbg.hambergsen.constant.ResultPage;
+import com.hbg.hambergsen.constant.ServiceException;
+import com.hbg.hambergsen.constant.annotation.ResponseResult;
 import com.hbg.hambergsen.constant.eneums.ResultEnum;
 import com.hbg.hambergsen.dto.TestDto;
 import com.hbg.hambergsen.service.TestUserService;
@@ -25,13 +27,14 @@ public class TestController {
     private TestUserService userServiceImpl;
 
     @GetMapping("/test/{s}")
+    @ResponseResult
     @ApiOperation(value = "测试", notes = "获取路径")
-    public ResponseBean test(@PathVariable String s){
+    public Test test(@PathVariable String s){
         log.info(String.format("测试请求参数：{}."),s);
         log.debug("hello，我是debug===");
         List<Test> all = userServiceImpl.getAll();
         log.info(String.format("测试请求参数：{}."),all);
-        return ResponseBean.success();
+        return all.get(0);
     }
 
     @PostMapping("/test/add")
@@ -54,9 +57,16 @@ public class TestController {
     @ApiOperation(value = "分页查询", notes = "分页用户查询")
     public ResponseBean selectAll(@RequestParam(value = "当前页", required = false, defaultValue = "1") Integer pageNum,
                                   @RequestParam(value = "每页数量", required =  false, defaultValue = "10") int pageSize){
-        ResultPage<Test> testList = userServiceImpl.getAll(pageNum, pageSize);
-        log.info("query data is {}", JSONObject.toJSONString(testList));
+        ResultPage<Test> testList = null;
+        try {
+            testList = userServiceImpl.getAll(pageNum, pageSize);
+        }catch (ServiceException e){
+            log.error("fail {}",e.getMessage());
+            return ResponseBean.exception(e.getCode(), e.getMessage());
+        }
+       log.info("query data is {}", JSONObject.toJSONString(testList));
         return ResponseBean.success(testList);
+      // return ResponseBean.success();
 
     }
 

@@ -52,6 +52,14 @@ public class ResponseBean implements Serializable {
 
     }
 
+    public static ResponseBean exception(Integer code, String msg){
+        ResponseBean result = new ResponseBean();
+        result.setCode(code);
+        result.setMsg(msg);
+        return result;
+
+    }
+
 
 }
 

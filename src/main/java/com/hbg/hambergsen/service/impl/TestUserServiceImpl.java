@@ -3,6 +3,7 @@ package com.hbg.hambergsen.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.hbg.hambergsen.bean.Test;
 import com.hbg.hambergsen.constant.ResultPage;
+import com.hbg.hambergsen.constant.ServiceException;
 import com.hbg.hambergsen.dao.TestUserMapper;
 import com.hbg.hambergsen.dto.TestDto;
 import com.hbg.hambergsen.service.TestUserService;
@@ -35,6 +36,7 @@ public class TestUserServiceImpl implements TestUserService {
         // 这里的分页查询只指针对第一个查询sql生效
         PageHelper.startPage(pageNum, pageSize);
         List<Test> testList = testUserMapper.getAll();
-        return new ResultPage<Test>(testList);
+         return new ResultPage<Test>(testList);
+        //throw new ServiceException(400,"名字不能为空");
     }
 }
