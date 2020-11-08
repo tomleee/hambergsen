@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbg.hambergsen.dao.FeeMapper">
+  <resultMap id="BaseResultMap" type="com.hbg.hambergsen.bean.Fee">
+    <id column="fee_id" jdbcType="INTEGER" property="feeId" />
+    <result column="fee_usd" jdbcType="DOUBLE" property="feeUsd" />
+    <result column="fee_eur" jdbcType="DOUBLE" property="feeEur" />
+    <result column="finance" jdbcType="VARCHAR" property="finance" />
+    <result column="stat" jdbcType="CHAR" property="stat" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fee
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hbg.hambergsen.bean.Fee">
+    insert into fee (fee_id, fee_usd, fee_eur, 
+      finance, stat, remark, 
+      create_time)
+    values (#{feeId,jdbcType=INTEGER}, #{feeUsd,jdbcType=DOUBLE}, #{feeEur,jdbcType=DOUBLE}, 
+      #{finance,jdbcType=VARCHAR}, #{stat,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hbg.hambergsen.bean.Fee">
+    update fee
+    set fee_usd = #{feeUsd,jdbcType=DOUBLE},
+      fee_eur = #{feeEur,jdbcType=DOUBLE},
+      finance = #{finance,jdbcType=VARCHAR},
+      stat = #{stat,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select fee_id, fee_usd, fee_eur, finance, stat, remark, create_time
+    from fee
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select fee_id, fee_usd, fee_eur, finance, stat, remark, create_time
+    from fee
+  </select>
+</mapper>

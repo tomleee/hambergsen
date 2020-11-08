@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbg.hambergsen.dao.DeclareMapper">
+  <resultMap id="BaseResultMap" type="com.hbg.hambergsen.bean.Declare">
+    <id column="declare_id" jdbcType="INTEGER" property="declareId" />
+    <result column="declare_type" jdbcType="CHAR" property="declareType" />
+    <result column="stat" jdbcType="CHAR" property="stat" />
+    <result column="declare_topic" jdbcType="VARCHAR" property="declareTopic" />
+    <result column="maintainer" jdbcType="VARCHAR" property="maintainer" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="declare_desc" jdbcType="LONGVARCHAR" property="declareDesc" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from declare
+    where declare_id = #{declareId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hbg.hambergsen.bean.Declare">
+    insert into declare (declare_id, declare_type, stat, 
+      declare_topic, maintainer, remark, 
+      create_time, publish_time, declare_desc
+      )
+    values (#{declareId,jdbcType=INTEGER}, #{declareType,jdbcType=CHAR}, #{stat,jdbcType=CHAR}, 
+      #{declareTopic,jdbcType=VARCHAR}, #{maintainer,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{publishTime,jdbcType=TIMESTAMP}, #{declareDesc,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hbg.hambergsen.bean.Declare">
+    update declare
+    set declare_type = #{declareType,jdbcType=CHAR},
+      stat = #{stat,jdbcType=CHAR},
+      declare_topic = #{declareTopic,jdbcType=VARCHAR},
+      maintainer = #{maintainer,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      declare_desc = #{declareDesc,jdbcType=LONGVARCHAR}
+    where declare_id = #{declareId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select declare_id, declare_type, stat, declare_topic, maintainer, remark, create_time, 
+    publish_time, declare_desc
+    from declare
+    where declare_id = #{declareId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select declare_id, declare_type, stat, declare_topic, maintainer, remark, create_time, 
+    publish_time, declare_desc
+    from declare
+  </select>
+</mapper>

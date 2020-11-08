@@ -24,7 +24,7 @@ import java.util.List;
 public class TestController {
 
     @Resource
-    private TestUserService userServiceImpl;
+    private TestUserService testServiceImpl;
 
     @GetMapping("/test/{s}")
     @ResponseResult
@@ -32,7 +32,7 @@ public class TestController {
     public Test test(@PathVariable String s){
         log.info(String.format("测试请求参数：{}."),s);
         log.debug("hello，我是debug===");
-        List<Test> all = userServiceImpl.getAll();
+        List<Test> all = testServiceImpl.getAll();
         log.info(String.format("测试请求参数：{}."),all);
         return all.get(0);
     }
@@ -45,7 +45,7 @@ public class TestController {
             if (StringUtils.isBlank(userDto.getName())){
                 return ResponseBean.fail(ResultEnum.NUllPARAM, "用户名不能为空");
             }
-            userServiceImpl.saveUser(userDto);
+            testServiceImpl.saveUser(userDto);
         }catch (Exception e){
             log.error("add user is fail {}",e.getMessage());
             return ResponseBean.fail(ResultEnum.DATABASEEXCEPTION);
@@ -59,7 +59,7 @@ public class TestController {
                                   @RequestParam(value = "每页数量", required =  false, defaultValue = "10") int pageSize){
         ResultPage<Test> testList = null;
         try {
-            testList = userServiceImpl.getAll(pageNum, pageSize);
+            testList = testServiceImpl.getAll(pageNum, pageSize);
         }catch (ServiceException e){
             log.error("fail {}",e.getMessage());
             return ResponseBean.exception(e.getCode(), e.getMessage());

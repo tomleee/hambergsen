@@ -15,8 +15,9 @@ public enum ResultEnum {
      */
     SUCCESS(200, "成功"),
     ERROR(400, "服务异常"),
-    NUllPARAM(401, "入参为空"),
-    DATABASEEXCEPTION(402, "数据库异常");
+    NUllPARAM(401, "入参不合法"),
+    DATABASEEXCEPTION(402, "数据库异常"),
+    FAIL(403, "执行异常");
 
     private Integer code;
 

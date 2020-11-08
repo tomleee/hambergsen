@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbg.hambergsen.dao.ContainerMapper">
+  <resultMap id="BaseResultMap" type="com.hbg.hambergsen.bean.Container">
+    <id column="container_id" jdbcType="INTEGER" property="containerId" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="container_no" jdbcType="VARCHAR" property="containerNo" />
+    <result column="container_type" jdbcType="VARCHAR" property="containerType" />
+    <result column="goods_weight" jdbcType="DOUBLE" property="goodsWeight" />
+    <result column="seal_no" jdbcType="VARCHAR" property="sealNo" />
+    <result column="stat" jdbcType="CHAR" property="stat" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from container
+    where container_id = #{containerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hbg.hambergsen.bean.Container">
+    insert into container (container_id, order_id, container_no, 
+      container_type, goods_weight, seal_no, 
+      stat, remark, create_time, 
+      modify_time)
+    values (#{containerId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{containerNo,jdbcType=VARCHAR}, 
+      #{containerType,jdbcType=VARCHAR}, #{goodsWeight,jdbcType=DOUBLE}, #{sealNo,jdbcType=VARCHAR}, 
+      #{stat,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hbg.hambergsen.bean.Container">
+    update container
+    set order_id = #{orderId,jdbcType=INTEGER},
+      container_no = #{containerNo,jdbcType=VARCHAR},
+      container_type = #{containerType,jdbcType=VARCHAR},
+      goods_weight = #{goodsWeight,jdbcType=DOUBLE},
+      seal_no = #{sealNo,jdbcType=VARCHAR},
+      stat = #{stat,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where container_id = #{containerId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select container_id, order_id, container_no, container_type, goods_weight, seal_no, 
+    stat, remark, create_time, modify_time
+    from container
+    where container_id = #{containerId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select container_id, order_id, container_no, container_type, goods_weight, seal_no, 
+    stat, remark, create_time, modify_time
+    from container
+  </select>
+</mapper>

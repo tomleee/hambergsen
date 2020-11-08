@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbg.hambergsen.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.hbg.hambergsen.bean.Order">
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="custom_id" jdbcType="VARCHAR" property="customId" />
+    <result column="custom_name" jdbcType="VARCHAR" property="customName" />
+    <result column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+    <result column="supplier_name" jdbcType="VARCHAR" property="supplierName" />
+    <result column="blm" jdbcType="VARCHAR" property="blm" />
+    <result column="blh" jdbcType="VARCHAR" property="blh" />
+    <result column="service_id" jdbcType="SMALLINT" property="serviceId" />
+    <result column="container_type" jdbcType="CHAR" property="containerType" />
+    <result column="order_stat" jdbcType="CHAR" property="orderStat" />
+    <result column="receivable_stat" jdbcType="CHAR" property="receivableStat" />
+    <result column="payable_stat" jdbcType="CHAR" property="payableStat" />
+    <result column="car_no" jdbcType="VARCHAR" property="carNo" />
+    <result column="origin_place" jdbcType="VARCHAR" property="originPlace" />
+    <result column="destination_place" jdbcType="VARCHAR" property="destinationPlace" />
+    <result column="load_time" jdbcType="TIMESTAMP" property="loadTime" />
+    <result column="ETD" jdbcType="TIMESTAMP" property="etd" />
+    <result column="ATD" jdbcType="TIMESTAMP" property="atd" />
+    <result column="ETA" jdbcType="TIMESTAMP" property="eta" />
+    <result column="chinese_name" jdbcType="VARCHAR" property="chineseName" />
+    <result column="english_name" jdbcType="VARCHAR" property="englishName" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+    <result column="hs_code" jdbcType="VARCHAR" property="hsCode" />
+    <result column="num" jdbcType="SMALLINT" property="num" />
+    <result column="gross_weight" jdbcType="DOUBLE" property="grossWeight" />
+    <result column="volume" jdbcType="DOUBLE" property="volume" />
+    <result column="salesman" jdbcType="VARCHAR" property="salesman" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="remark1" jdbcType="VARCHAR" property="remark1" />
+    <result column="remark2" jdbcType="VARCHAR" property="remark2" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hbg.hambergsen.bean.Order">
+    insert into order (order_id, custom_id, custom_name, 
+      supplier_id, supplier_name, blm, 
+      blh, service_id, container_type, 
+      order_stat, receivable_stat, payable_stat, 
+      car_no, origin_place, destination_place, 
+      load_time, ETD, ATD, 
+      ETA, chinese_name, english_name, 
+      create_date, hs_code, num, 
+      gross_weight, volume, salesman, 
+      operator, remark1, remark2, 
+      create_time, modify_time)
+    values (#{orderId,jdbcType=VARCHAR}, #{customId,jdbcType=VARCHAR}, #{customName,jdbcType=VARCHAR}, 
+      #{supplierId,jdbcType=VARCHAR}, #{supplierName,jdbcType=VARCHAR}, #{blm,jdbcType=VARCHAR}, 
+      #{blh,jdbcType=VARCHAR}, #{serviceId,jdbcType=SMALLINT}, #{containerType,jdbcType=CHAR}, 
+      #{orderStat,jdbcType=CHAR}, #{receivableStat,jdbcType=CHAR}, #{payableStat,jdbcType=CHAR}, 
+      #{carNo,jdbcType=VARCHAR}, #{originPlace,jdbcType=VARCHAR}, #{destinationPlace,jdbcType=VARCHAR}, 
+      #{loadTime,jdbcType=TIMESTAMP}, #{etd,jdbcType=TIMESTAMP}, #{atd,jdbcType=TIMESTAMP}, 
+      #{eta,jdbcType=TIMESTAMP}, #{chineseName,jdbcType=VARCHAR}, #{englishName,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=DATE}, #{hsCode,jdbcType=VARCHAR}, #{num,jdbcType=SMALLINT}, 
+      #{grossWeight,jdbcType=DOUBLE}, #{volume,jdbcType=DOUBLE}, #{salesman,jdbcType=VARCHAR}, 
+      #{operator,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hbg.hambergsen.bean.Order">
+    update order
+    set custom_id = #{customId,jdbcType=VARCHAR},
+      custom_name = #{customName,jdbcType=VARCHAR},
+      supplier_id = #{supplierId,jdbcType=VARCHAR},
+      supplier_name = #{supplierName,jdbcType=VARCHAR},
+      blm = #{blm,jdbcType=VARCHAR},
+      blh = #{blh,jdbcType=VARCHAR},
+      service_id = #{serviceId,jdbcType=SMALLINT},
+      container_type = #{containerType,jdbcType=CHAR},
+      order_stat = #{orderStat,jdbcType=CHAR},
+      receivable_stat = #{receivableStat,jdbcType=CHAR},
+      payable_stat = #{payableStat,jdbcType=CHAR},
+      car_no = #{carNo,jdbcType=VARCHAR},
+      origin_place = #{originPlace,jdbcType=VARCHAR},
+      destination_place = #{destinationPlace,jdbcType=VARCHAR},
+      load_time = #{loadTime,jdbcType=TIMESTAMP},
+      ETD = #{etd,jdbcType=TIMESTAMP},
+      ATD = #{atd,jdbcType=TIMESTAMP},
+      ETA = #{eta,jdbcType=TIMESTAMP},
+      chinese_name = #{chineseName,jdbcType=VARCHAR},
+      english_name = #{englishName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=DATE},
+      hs_code = #{hsCode,jdbcType=VARCHAR},
+      num = #{num,jdbcType=SMALLINT},
+      gross_weight = #{grossWeight,jdbcType=DOUBLE},
+      volume = #{volume,jdbcType=DOUBLE},
+      salesman = #{salesman,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select order_id, custom_id, custom_name, supplier_id, supplier_name, blm, blh, service_id, 
+    container_type, order_stat, receivable_stat, payable_stat, car_no, origin_place, 
+    destination_place, load_time, ETD, ATD, ETA, chinese_name, english_name, create_date, 
+    hs_code, num, gross_weight, volume, salesman, operator, remark1, remark2, create_time, 
+    modify_time
+    from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select order_id, custom_id, custom_name, supplier_id, supplier_name, blm, blh, service_id, 
+    container_type, order_stat, receivable_stat, payable_stat, car_no, origin_place, 
+    destination_place, load_time, ETD, ATD, ETA, chinese_name, english_name, create_date, 
+    hs_code, num, gross_weight, volume, salesman, operator, remark1, remark2, create_time, 
+    modify_time
+    from order
+  </select>
+</mapper>

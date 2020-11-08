@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbg.hambergsen.dao.ChargeMapper">
+  <resultMap id="BaseResultMap" type="com.hbg.hambergsen.bean.Charge">
+    <id column="charge_id" jdbcType="VARCHAR" property="chargeId" />
+    <result column="charge_type" jdbcType="CHAR" property="chargeType" />
+    <result column="charge_item" jdbcType="VARCHAR" property="chargeItem" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="amount" jdbcType="SMALLINT" property="amount" />
+    <result column="sum_money" jdbcType="DECIMAL" property="sumMoney" />
+    <result column="currency" jdbcType="VARCHAR" property="currency" />
+    <result column="rate" jdbcType="DOUBLE" property="rate" />
+    <result column="custom_id" jdbcType="INTEGER" property="customId" />
+    <result column="stat" jdbcType="CHAR" property="stat" />
+    <result column="actual_amount" jdbcType="DECIMAL" property="actualAmount" />
+    <result column="tsf_date" jdbcType="DATE" property="tsfDate" />
+    <result column="audit_date" jdbcType="DATE" property="auditDate" />
+    <result column="invoice_no" jdbcType="VARCHAR" property="invoiceNo" />
+    <result column="invoice_company" jdbcType="VARCHAR" property="invoiceCompany" />
+    <result column="finance" jdbcType="VARCHAR" property="finance" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from charge
+    where charge_id = #{chargeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hbg.hambergsen.bean.Charge">
+    insert into charge (charge_id, charge_type, charge_item, 
+      price, amount, sum_money, 
+      currency, rate, custom_id, 
+      stat, actual_amount, tsf_date, 
+      audit_date, invoice_no, invoice_company, 
+      finance, remark, create_time, 
+      modify_time)
+    values (#{chargeId,jdbcType=VARCHAR}, #{chargeType,jdbcType=CHAR}, #{chargeItem,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{amount,jdbcType=SMALLINT}, #{sumMoney,jdbcType=DECIMAL}, 
+      #{currency,jdbcType=VARCHAR}, #{rate,jdbcType=DOUBLE}, #{customId,jdbcType=INTEGER}, 
+      #{stat,jdbcType=CHAR}, #{actualAmount,jdbcType=DECIMAL}, #{tsfDate,jdbcType=DATE}, 
+      #{auditDate,jdbcType=DATE}, #{invoiceNo,jdbcType=VARCHAR}, #{invoiceCompany,jdbcType=VARCHAR}, 
+      #{finance,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hbg.hambergsen.bean.Charge">
+    update charge
+    set charge_type = #{chargeType,jdbcType=CHAR},
+      charge_item = #{chargeItem,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=SMALLINT},
+      sum_money = #{sumMoney,jdbcType=DECIMAL},
+      currency = #{currency,jdbcType=VARCHAR},
+      rate = #{rate,jdbcType=DOUBLE},
+      custom_id = #{customId,jdbcType=INTEGER},
+      stat = #{stat,jdbcType=CHAR},
+      actual_amount = #{actualAmount,jdbcType=DECIMAL},
+      tsf_date = #{tsfDate,jdbcType=DATE},
+      audit_date = #{auditDate,jdbcType=DATE},
+      invoice_no = #{invoiceNo,jdbcType=VARCHAR},
+      invoice_company = #{invoiceCompany,jdbcType=VARCHAR},
+      finance = #{finance,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where charge_id = #{chargeId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select charge_id, charge_type, charge_item, price, amount, sum_money, currency, rate, 
+    custom_id, stat, actual_amount, tsf_date, audit_date, invoice_no, invoice_company, 
+    finance, remark, create_time, modify_time
+    from charge
+    where charge_id = #{chargeId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select charge_id, charge_type, charge_item, price, amount, sum_money, currency, rate, 
+    custom_id, stat, actual_amount, tsf_date, audit_date, invoice_no, invoice_company, 
+    finance, remark, create_time, modify_time
+    from charge
+  </select>
+</mapper>

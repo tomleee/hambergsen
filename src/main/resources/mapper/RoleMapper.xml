@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbg.hambergsen.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.hbg.hambergsen.bean.Role">
+    <id column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="permission" jdbcType="CHAR" property="permission" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hbg.hambergsen.bean.Role">
+    insert into role (role_id, user_id, role_name, 
+      permission, remark)
+    values (#{roleId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, 
+      #{permission,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hbg.hambergsen.bean.Role">
+    update role
+    set user_id = #{userId,jdbcType=INTEGER},
+      role_name = #{roleName,jdbcType=VARCHAR},
+      permission = #{permission,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select role_id, user_id, role_name, permission, remark
+    from role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select role_id, user_id, role_name, permission, remark
+    from role
+  </select>
+</mapper>

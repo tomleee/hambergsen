@@ -28,7 +28,7 @@ public class TestUserServiceImpl implements TestUserService {
     @Override
     public void saveUser(TestDto userDto) {
         Test user = Test.builder().id(userDto.getId()).name(userDto.getName()).build();
-        testUserMapper.saveUser(user);
+        testUserMapper.saveUsers(user);
     }
 
     @Override

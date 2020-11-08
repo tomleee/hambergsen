@@ -10,6 +10,6 @@ public interface TestUserMapper  {
 
     List<Test> getAll();
 
-    void saveUser(Test userDto);
+    void saveUsers(Test userDto);
 
 }

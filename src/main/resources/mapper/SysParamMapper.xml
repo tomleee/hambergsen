@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbg.hambergsen.dao.SysParamMapper">
+  <resultMap id="BaseResultMap" type="com.hbg.hambergsen.bean.SysParam">
+    <id column="id" jdbcType="TINYINT" property="id" />
+    <result column="param_id" jdbcType="VARCHAR" property="paramId" />
+    <result column="param_value" jdbcType="VARCHAR" property="paramValue" />
+    <result column="param_cny_desc" jdbcType="VARCHAR" property="paramCnyDesc" />
+    <result column="maintainer" jdbcType="VARCHAR" property="maintainer" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="maintain_time" jdbcType="TIMESTAMP" property="maintainTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte">
+    delete from sys_param
+    where id = #{id,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="com.hbg.hambergsen.bean.SysParam">
+    insert into sys_param (id, param_id, param_value, 
+      param_cny_desc, maintainer, remark, 
+      maintain_time)
+    values (#{id,jdbcType=TINYINT}, #{paramId,jdbcType=VARCHAR}, #{paramValue,jdbcType=VARCHAR}, 
+      #{paramCnyDesc,jdbcType=VARCHAR}, #{maintainer,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{maintainTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hbg.hambergsen.bean.SysParam">
+    update sys_param
+    set param_id = #{paramId,jdbcType=VARCHAR},
+      param_value = #{paramValue,jdbcType=VARCHAR},
+      param_cny_desc = #{paramCnyDesc,jdbcType=VARCHAR},
+      maintainer = #{maintainer,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      maintain_time = #{maintainTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+    select id, param_id, param_value, param_cny_desc, maintainer, remark, maintain_time
+    from sys_param
+    where id = #{id,jdbcType=TINYINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, param_id, param_value, param_cny_desc, maintainer, remark, maintain_time
+    from sys_param
+  </select>
+</mapper>

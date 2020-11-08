@@ -1,5 +1,6 @@
 package com.hbg.hambergsen.constant;
 
+import com.hbg.hambergsen.constant.eneums.ResultEnum;
 import lombok.Data;
 
 @Data
@@ -9,9 +10,9 @@ public class ServiceException extends RuntimeException {
 
     private String message;
 
-    public ServiceException(Integer code, String message){
+    public ServiceException(ResultEnum resultEnum){
         // super(message);
-        this.message = message;
-        this.code = code;
+        this.message = resultEnum.getMessage();
+        this.code = resultEnum.getCode();
     }
 }

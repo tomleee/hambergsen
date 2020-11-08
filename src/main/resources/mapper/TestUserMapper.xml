@@ -3,11 +3,11 @@
 <mapper namespace="com.hbg.hambergsen.dao.TestUserMapper">
 
     <select id="getAll" resultType="test">
-        select * from test
+        select * from t_test
     </select>
 
-    <select id="saveUser" parameterType="test">
-        insert into test (id, name) values (#{id}, #{name})
+    <select id="saveUsers" parameterType="test">
+        insert into t_test (id, name) values (#{id}, #{name})
     </select>
 
 </mapper>

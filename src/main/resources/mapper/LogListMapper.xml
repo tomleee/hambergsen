@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbg.hambergsen.dao.LogListMapper">
+  <resultMap id="BaseResultMap" type="com.hbg.hambergsen.bean.LogList">
+    <id column="log_id" jdbcType="INTEGER" property="logId" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="operator_time" jdbcType="TIMESTAMP" property="operatorTime" />
+    <result column="operator_desc" jdbcType="VARCHAR" property="operatorDesc" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from log_list
+    where log_id = #{logId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hbg.hambergsen.bean.LogList">
+    insert into log_list (log_id, account, ip, 
+      operator_time, operator_desc, remark
+      )
+    values (#{logId,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{operatorTime,jdbcType=TIMESTAMP}, #{operatorDesc,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hbg.hambergsen.bean.LogList">
+    update log_list
+    set account = #{account,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      operator_time = #{operatorTime,jdbcType=TIMESTAMP},
+      operator_desc = #{operatorDesc,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select log_id, account, ip, operator_time, operator_desc, remark
+    from log_list
+    where log_id = #{logId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select log_id, account, ip, operator_time, operator_desc, remark
+    from log_list
+  </select>
+</mapper>

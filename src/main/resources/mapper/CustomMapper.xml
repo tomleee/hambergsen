@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbg.hambergsen.dao.CustomMapper">
+  <resultMap id="BaseResultMap" type="com.hbg.hambergsen.bean.Custom">
+    <id column="custom_id" jdbcType="INTEGER" property="customId" />
+    <result column="custom_type" jdbcType="CHAR" property="customType" />
+    <result column="custom_name" jdbcType="VARCHAR" property="customName" />
+    <result column="custom_addr" jdbcType="VARCHAR" property="customAddr" />
+    <result column="taxpayer_no" jdbcType="VARCHAR" property="taxpayerNo" />
+    <result column="taxpayer_type" jdbcType="VARCHAR" property="taxpayerType" />
+    <result column="bank_net" jdbcType="VARCHAR" property="bankNet" />
+    <result column="acct_no_cny" jdbcType="VARCHAR" property="acctNoCny" />
+    <result column="acct_no_usd" jdbcType="VARCHAR" property="acctNoUsd" />
+    <result column="acct_no_eur" jdbcType="VARCHAR" property="acctNoEur" />
+    <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+    <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="salesman" jdbcType="VARCHAR" property="salesman" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from custom
+    where custom_id = #{customId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hbg.hambergsen.bean.Custom">
+    insert into custom (custom_id, custom_type, custom_name, 
+      custom_addr, taxpayer_no, taxpayer_type, 
+      bank_net, acct_no_cny, acct_no_usd, 
+      acct_no_eur, mobile_no, contact_name, 
+      email, state, salesman, 
+      remark, create_time, modify_time
+      )
+    values (#{customId,jdbcType=INTEGER}, #{customType,jdbcType=CHAR}, #{customName,jdbcType=VARCHAR}, 
+      #{customAddr,jdbcType=VARCHAR}, #{taxpayerNo,jdbcType=VARCHAR}, #{taxpayerType,jdbcType=VARCHAR}, 
+      #{bankNet,jdbcType=VARCHAR}, #{acctNoCny,jdbcType=VARCHAR}, #{acctNoUsd,jdbcType=VARCHAR}, 
+      #{acctNoEur,jdbcType=VARCHAR}, #{mobileNo,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{state,jdbcType=CHAR}, #{salesman,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hbg.hambergsen.bean.Custom">
+    update custom
+    set custom_type = #{customType,jdbcType=CHAR},
+      custom_name = #{customName,jdbcType=VARCHAR},
+      custom_addr = #{customAddr,jdbcType=VARCHAR},
+      taxpayer_no = #{taxpayerNo,jdbcType=VARCHAR},
+      taxpayer_type = #{taxpayerType,jdbcType=VARCHAR},
+      bank_net = #{bankNet,jdbcType=VARCHAR},
+      acct_no_cny = #{acctNoCny,jdbcType=VARCHAR},
+      acct_no_usd = #{acctNoUsd,jdbcType=VARCHAR},
+      acct_no_eur = #{acctNoEur,jdbcType=VARCHAR},
+      mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      state = #{state,jdbcType=CHAR},
+      salesman = #{salesman,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where custom_id = #{customId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select custom_id, custom_type, custom_name, custom_addr, taxpayer_no, taxpayer_type, 
+    bank_net, acct_no_cny, acct_no_usd, acct_no_eur, mobile_no, contact_name, email, 
+    state, salesman, remark, create_time, modify_time
+    from custom
+    where custom_id = #{customId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select custom_id, custom_type, custom_name, custom_addr, taxpayer_no, taxpayer_type, 
+    bank_net, acct_no_cny, acct_no_usd, acct_no_eur, mobile_no, contact_name, email, 
+    state, salesman, remark, create_time, modify_time
+    from custom
+  </select>
+</mapper>

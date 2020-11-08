@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbg.hambergsen.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.hbg.hambergsen.bean.User">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="age" jdbcType="SMALLINT" property="age" />
+    <result column="user_stat" jdbcType="CHAR" property="userStat" />
+    <result column="employee_no" jdbcType="VARCHAR" property="employeeNo" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="supervisor" jdbcType="VARCHAR" property="supervisor" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hbg.hambergsen.bean.User">
+    insert into user (user_id, role_id, account, 
+      password, user_name, mobile_no, 
+      sex, age, user_stat, employee_no, 
+      department, supervisor, email, 
+      creater, create_time, modify_time, 
+      remark)
+    values (#{userId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{mobileNo,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=CHAR}, #{age,jdbcType=SMALLINT}, #{userStat,jdbcType=CHAR}, #{employeeNo,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{supervisor,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hbg.hambergsen.bean.User">
+    update user
+    set role_id = #{roleId,jdbcType=INTEGER},
+      account = #{account,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      age = #{age,jdbcType=SMALLINT},
+      user_stat = #{userStat,jdbcType=CHAR},
+      employee_no = #{employeeNo,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      supervisor = #{supervisor,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select user_id, role_id, account, password, user_name, mobile_no, sex, age, user_stat, 
+    employee_no, department, supervisor, email, creater, create_time, modify_time, remark
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select user_id, role_id, account, password, user_name, mobile_no, sex, age, user_stat, 
+    employee_no, department, supervisor, email, creater, create_time, modify_time, remark
+    from user
+  </select>
+
+    <select id="addUser" parameterType="user">
+        insert into t_user (account, password) values (#{account}, #{password})
+    </select>
+
+</mapper>
